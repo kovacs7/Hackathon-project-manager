@@ -7,11 +7,14 @@ const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 
 //DATABASE CONNECTION
-mongoose.connect(process.env.MONGO_URL).then(() => {
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
     console.log("database connected");
-}).catch((Error) => {
-    console.log("Error in Connecting to the Server" , Error)
-})
+  })
+  .catch((Error) => {
+    console.log("Error in Connecting to the Server", Error);
+  });
 
 //MIDDLEWARES
 app.use(express.json());

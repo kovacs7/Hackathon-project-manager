@@ -7,12 +7,17 @@ const useAccountData = create((set) => ({
   getAccountData: async () => {
     try {
       const res = await axios.get("/accountsinfo");
-      if (res.data.error) {
-        toast.error(res.data.error);
+      if (res.data) {
+        if (res.data.error) {
+          toast.error(res.data.error);
+        } else {
+          set({ data: res.data });
+        }
       } else {
-        set({ data: res.data });
+        set({ data: null });
       }
     } catch (error) {
+      console.log(error)
       toast.error("Failed to fetch account data");
     }
   },

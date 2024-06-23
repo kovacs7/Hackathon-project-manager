@@ -1,4 +1,10 @@
-const userModel = require("../models/user");
+const {
+  userModel,
+  chatModel,
+  canvasModel,
+  projectModel,
+  taskModel,
+} = require("../models/models.js");
 const jwt = require("jsonwebtoken");
 const { hashPassword, comparePassword } = require("../helper/auth");
 

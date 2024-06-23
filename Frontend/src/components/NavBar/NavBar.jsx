@@ -47,7 +47,7 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center md:space-x-4">
-            {data ? <p className="text-white">Hi, {data.name}!</p> : <>
+            {data ? <p className="text-gray-50 text-sm md:block hidden">Hi, {data.name}!</p> : <>
               <a
               href="/login"
               type="button"
