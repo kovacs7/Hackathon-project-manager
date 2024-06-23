@@ -50,11 +50,12 @@ const Login = async (req, res) => {
         error: "The user does not exist.\nPlease sign up first.",
       });
     }
+    console.log(userExist)
     const checkPassword = await comparePassword(password, userExist.password);
 
     if (checkPassword) {
       const token = jwt.sign(
-        { email: email, username: userExist.username, name: userExist.name },
+        { email: email, username: userExist.username, name: userExist.name, _id : userExist._id},
         process.env.JWT_SECRET,
         {},
         function (err, token) {

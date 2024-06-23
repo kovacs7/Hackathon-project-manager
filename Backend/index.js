@@ -30,6 +30,7 @@ app.use(
 
 
 app.use("/" , require("./routes/authRoutes"))
+app.use("/" , require("./routes/projectRoutes"))
 
 app.listen(PORT, () => {
   console.log(`server is runnung On ${PORT}`);

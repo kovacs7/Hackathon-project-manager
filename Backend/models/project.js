@@ -5,13 +5,13 @@ const projectSchema = new mongoose.Schema({
   description: { type: String },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
     required: true,
   },
-  teamMembers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-  tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
-  chats: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chat" }],
-  canvas: { type: mongoose.Schema.Types.ObjectId, ref: "Canvas" },
+  teamMembers: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
+  tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "task" }],
+  chats: [{ type: mongoose.Schema.Types.ObjectId, ref: "chat" }],
+  canvas: { type: mongoose.Schema.Types.ObjectId, ref: "canvas" },
 });
 
 module.exports = mongoose.model("project", projectSchema);
