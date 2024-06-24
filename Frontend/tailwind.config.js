@@ -6,6 +6,9 @@ export default {
       colors: {
         "shade-1": "#2c2583",
       },
+      fontFamily: {
+        headerFonts: ["Noto Sans", "sans-serif"],
+      },
     },
   },
   plugins: [],

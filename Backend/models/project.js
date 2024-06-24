@@ -8,6 +8,10 @@ const projectSchema = new mongoose.Schema({
     ref: "user",
     required: true,
   },
+  info : {
+    tags: [String],
+    date: { type: Date, default: Date.now },
+  },
   teamMembers: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
   tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "task" }],
   chats: [{ type: mongoose.Schema.Types.ObjectId, ref: "chat" }],

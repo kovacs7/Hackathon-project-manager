@@ -17,8 +17,8 @@ const Home = () => {
     <>
       {data ? (
         <>
-          <Project/>
-          <Menu />
+          <NavBar />
+          <Project />
         </>
       ) : (
         <>
