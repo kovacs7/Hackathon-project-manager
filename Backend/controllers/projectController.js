@@ -6,35 +6,47 @@ const {
   taskModel,
 } = require("../models/models.js");
 
-
 const mongoose = require("mongoose");
 
-const getProjects = async (req, res) => {
-  try {
-    const { title, description, createdBy } = req.body;
+const createProjects = async (req, res) => {
+  const { title, description, createdBy, teamMembers, tags } = req.body;
 
-    if (!title || !createdBy) {
-      return res.status(400).json({ error: "Title and createdBy are required fields." });
-    }
+  try {
+    // Find users by usernames
+    const users = await userModel
+      .find({ username: { $in: teamMembers } })
+      .select("_id");
 
     if (!mongoose.Types.ObjectId.isValid(createdBy)) {
       return res.status(400).json({ error: "Invalid ObjectId for createdBy." });
     }
 
+    // Check if all provided usernames are valid
+    if (users.length !== teamMembers.length) {
+      return res
+        .status(400)
+        .json({ message: "One or more usernames are invalid" });
+    }
+
+    // Extract ObjectId from the users
+    const teamMemberIds = users.map((user) => user._id);
+
+    // Create new project
     const newProject = new projectModel({
       title,
       description,
-      createdBy
+      createdBy,
+      info: { tags },
+      teamMembers: teamMemberIds,
     });
 
-    const value = await newProject.save();
-    console.log(value);
-
-    res.status(201).json(value);
+    // Save project
+    const savedProject = await newProject.save();
+    res.status(201).json(savedProject);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred while creating the project." });
+    console.error("Error creating project:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
-module.exports = { getProjects };
+module.exports = { createProjects };

@@ -93,4 +93,20 @@ const AccountsInfo = (req, res) => {
     }
 };
 
-module.exports = { SignUp, Login, AccountsInfo };
+const searchUsers = async (req, res) => {
+  try {
+    const query = req.query.query;
+    if (!query) {
+      return res.status(400).json({ message: "Query parameter is required" });
+    }
+
+    const users = await userModel.find({
+      username: { $regex: query, $options: "i" },
+    }).select("username");
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+module.exports = { SignUp, Login, AccountsInfo, searchUsers};
