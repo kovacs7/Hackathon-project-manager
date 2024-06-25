@@ -11,6 +11,11 @@ import { SignUp, Login } from "./pages/index.js";
 import Home from "./pages/Home.jsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
+import AppDashboard from "./components/Layouts/AppDashboard.jsx";
+import Task from "./components/App/Tasks/Task.jsx";
+import Chat from "./components/App/chat/Chat.jsx";
+import Timeline from "./components/App/timeline/Timeline.jsx";
+import Canvas from "./components/App/canvas/Canvas.jsx";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
@@ -21,6 +26,12 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
+      <Route path="/app-dashboard" element={<AppDashboard />}>
+        <Route path="/app-dashboard/task" element={<Task />} />
+        <Route path="/app-dashboard/chat" element={<Chat />} />
+        <Route path="/app-dashboard/canvas" element={<Canvas />} />
+        <Route path="/app-dashboard/timeline" element={<Timeline />} />
+      </Route>
     </>
   )
 );

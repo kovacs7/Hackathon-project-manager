@@ -50,10 +50,10 @@ const Project = () => {
               onClick={() => setIsModalOpen(true)}
             >
               <span className="absolute inset-0 border-2 border-indigo-500 group-active:border-indigo-600 rounded-lg"></span>
-              <span className="block border border-indigo-600 bg-indigo-500 px-2 py-1 transition-transform active:border-indigo-400 active:bg-indigo-400 group-hover:-translate-x-1 group-hover:-translate-y-1 rounded-lg">
+              <span className="block border border-indigo-600 bg-indigo-500 px-1 py-1 transition-transform active:border-indigo-400 active:bg-indigo-400 group-hover:-translate-x-1 group-hover:-translate-y-1 rounded-lg">
                 <div className="flex items-center gap-2">
                   <SquarePlus />
-                  Create Project
+                  <p className="sm:block hidden pr-1">Create Project</p>
                 </div>
               </span>
             </button>
