@@ -83,7 +83,7 @@ const FormModal = ({ modalClose }) => {
       });
 
       if (response.status === 201) {
-        toast.success("Project successfully created.");
+        toast.success("Project successfully created.\nPlease refresh the page to see the changes.");
         modalClose();
       }
     } catch (error) {

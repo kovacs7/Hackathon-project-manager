@@ -49,4 +49,25 @@ const createProjects = async (req, res) => {
   }
 };
 
-module.exports = { createProjects };
+const getUserProjects = async (req, res) => {
+  try {
+    const userId = req.body.user; // Assumes user ID is available in req.user
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: "Invalid user ID" });
+    }
+
+    const projects = await projectModel.find({
+      $or: [{ createdBy: userId }, { teamMembers: userId }],
+    })
+      .populate("createdBy", "username") // Populate createdBy field with username
+      .populate("teamMembers", "username"); // Populate teamMembers field with username
+
+    res.status(200).json(projects);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+module.exports = { createProjects, getUserProjects };

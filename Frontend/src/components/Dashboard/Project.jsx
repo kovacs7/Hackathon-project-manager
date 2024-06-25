@@ -4,31 +4,38 @@ import useAccountData from "../../store/authStore";
 import Article from "./Article";
 import { SquarePlus, FolderOpenDot } from "lucide-react";
 import FormModal from "./FormModal";
+import toast from "react-hot-toast";
 
 const Project = () => {
   const { data, getAccountData } = useAccountData();
-  const [isProjectCreated, setIsProjectCreated] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [projectInfo, setProjectInfo] = useState([]);
+
+  const getUserProjects = async () => {
+    try {
+      const res = await axios.post("/getprojects", {user : data._id}); 
+      if (res.data.error) {
+        toast.error(res.data.error);
+      } else {
+        setProjectInfo(res.data);
+        console.log(res.data)
+      }
+    } catch (error) {
+      toast.error("Error occurred while fetching data of user's projects.");
+      console.log(error);
+    }
+  };
+
+ useEffect(() => {
+   if (data._id) {
+     getUserProjects();
+   }
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [data._id]);
 
   useEffect(() => {
     getAccountData();
   }, [getAccountData]);
-
-  const createProject = async () => {
-    if (data && data._id) {
-      try {
-        const response = await axios.post("/projects", {
-          title: "test-title",
-          description: "test-description",
-          createdBy: data._id,
-        });
-        console.log("Project created", response.data);
-        setIsProjectCreated(true);
-      } catch (error) {
-        console.error("Error creating project", error);
-      }
-    }
-  };
 
   return (
     <>
@@ -53,9 +60,9 @@ const Project = () => {
             </button>
           </h2>
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Article />
-            <Article />
-            <Article />
+            {projectInfo.map((project) => (
+              <Article key={project._id} project={project} />
+            ))}
           </div>
         </div>
       </section>
