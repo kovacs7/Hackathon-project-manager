@@ -142,7 +142,7 @@ const Login = () => {
 
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-500">
-                  No account?
+                  No account?{" "}
                   <Link className="underline" to="/signup">
                     Sign up
                   </Link>

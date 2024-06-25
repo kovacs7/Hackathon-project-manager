@@ -48,7 +48,7 @@ const Article = () => {
 
                     <div className="mt-4 flex flex-wrap gap-1">
                       <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
-                        <LayoutList size={16} />
+                        <LayoutList size={16}/>
                         Tasks
                       </button>
 

@@ -194,7 +194,7 @@ const SignUp = () => {
                       {" "}
                       terms and conditions{" "}
                     </a>
-                    and
+                    and{" "}
                     <a href="#" className="text-gray-700 underline">
                       privacy policy
                     </a>
@@ -208,7 +208,7 @@ const SignUp = () => {
                   </button>
 
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account?
+                    Already have an account?{" "}
                     <Link to="/login" className="text-gray-700 underline">
                       Log in
                     </Link>

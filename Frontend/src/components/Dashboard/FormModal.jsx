@@ -1,10 +1,9 @@
 import { X, FolderOpenDot } from "lucide-react";
 import Logo2 from "../../assets/Logo2.svg"
 import PropTypes from "prop-types";
-import { useState } from "react";
+import toast from "react-hot-toast";
 
 const FormModal = ({modalClose}) => {
-   const [isProjectCreated, setIsProjectCreated] = useState(false);
   return (
     <>
       <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-md flex justify-center items-center">
@@ -110,14 +109,13 @@ const FormModal = ({modalClose}) => {
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button
                   className="group relative inline-block text-sm font-medium text-white focus:outline-none"
-                  onClick={()=>(setIsProjectCreated(true))}
-                  disabled={isProjectCreated}
+                  onClick={()=>(toast.success("Project successfully created."))}
                 >
                   <span className="absolute inset-0 border-2 border-indigo-500 group-active:border-indigo-600 rounded-lg"></span>
-                  <span className="block border border-indigo-600 bg-indigo-500 px-2 py-1 transition-transform active:border-indigo-400 active:bg-indigo-400 group-hover:-translate-x-1 group-hover:-translate-y-1 rounded-lg">
+                  <span className="block border border-indigo-600 bg-indigo-500 px-2 py-1 transition-transform active:border-indigo-400 active:bg-indigo-500 group-hover:-translate-x-1 group-hover:-translate-y-1 rounded-lg">
                     <div className="flex items-center gap-2">
                       <FolderOpenDot size={16} />{" "}
-                      {isProjectCreated ? "Project Created" : "Create Project"}
+                      Create Project
                     </div>
                   </span>
                 </button>

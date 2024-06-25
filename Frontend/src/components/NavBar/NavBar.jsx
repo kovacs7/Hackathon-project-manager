@@ -47,24 +47,30 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center md:space-x-4">
-            {data ? <p className="text-gray-50 text-md md:block hidden font-headerFonts">Hi, {data.name}! 👋</p> : <>
-              <a
-              href="/login"
-              type="button"
-              className="hidden px-4 py-1 rounded lg:block bg-white text-indigo-500
+            {data ? (
+              <p className="text-gray-50 text-md md:block hidden font-headerFonts">
+                Hi, {data.name} ! <span className="text-2xl">👋</span>
+              </p>
+            ) : (
+              <>
+                <a
+                  href="/login"
+                  type="button"
+                  className="hidden px-4 py-1 rounded lg:block bg-white text-indigo-500
               active:bg-indigo-500 active:text-white tracking-tighter"
-            >
-              Log in
-            </a>
-            <a
-              href="/signup"
-              type="button"
-              className="hidden px-4 py-1 rounded lg:block bg-white text-indigo-500
+                >
+                  Log in
+                </a>
+                <a
+                  href="/signup"
+                  type="button"
+                  className="hidden px-4 py-1 rounded lg:block bg-white text-indigo-500
               active:bg-indigo-500 active:text-white tracking-tighter"
-            >
-              Register
-            </a>
-            </>}
+                >
+                  Register
+                </a>
+              </>
+            )}
             {/* hamburger menu - mobile view */}
             <button title="Open menu" type="button" className="p-4 lg:hidden">
               <svg
