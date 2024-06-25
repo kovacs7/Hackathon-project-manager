@@ -18,7 +18,6 @@ const Project = () => {
         toast.error(res.data.error);
       } else {
         setProjectInfo(res.data);
-        console.log(res.data)
       }
     } catch (error) {
       toast.error("Error occurred while fetching data of user's projects.");

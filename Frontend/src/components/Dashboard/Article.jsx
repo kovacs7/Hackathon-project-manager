@@ -61,7 +61,7 @@ const Article = ({ project }) => {
                                       key={member._id}
                                       className="p-2 hover:bg-blue-50 border-b flex flex-row items-center gap-2"
                                     >
-                                      <User size={16} color="green" />
+                                      <User size={16} color="indigo" />
                                       <div>{member.username}</div>
                                     </li>
                                   ))}
