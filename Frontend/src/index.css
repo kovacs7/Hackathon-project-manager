@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.max-h-initial {
+  max-height: var(--initial-vh);
+}
+
+.h-initial {
+  height: var(--initial-vh);
+}
+

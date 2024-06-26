@@ -1,10 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aspire.</title>
+    <script>
+      // Capture the initial viewport height
+      const initialViewportHeight = window.innerHeight;
+
+      // Set the initial viewport height as a CSS variable
+      document.documentElement.style.setProperty(
+        "--initial-vh",
+        `${initialViewportHeight}px`
+      );
+    </script>
   </head>
   <body>
     <div id="root"></div>

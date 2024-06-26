@@ -1,11 +1,12 @@
+
 const Task = () => {
   return (
     <>
-      <div className="container flex justify-between h-16 mx-auto rounded-lg bg-indigo-400 p-6">
-        Hello
+      <div className="bg-green-300">
+        Task
       </div>
     </>
   );
-}
+};
 
-export default Task
+export default Task;

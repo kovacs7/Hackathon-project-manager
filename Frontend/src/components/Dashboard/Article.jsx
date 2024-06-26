@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Article = ({ project }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -91,35 +92,47 @@ const Article = ({ project }) => {
                     </div>
 
                     <div className="mt-4 flex flex-wrap gap-1">
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link
+                        to="/app-dashboard/task"
+                        className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
+                      >
                         <LayoutList size={16} />
                         Tasks
-                      </button>
+                      </Link>
 
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link
+                        to="/app-dashboard/chat"
+                        className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
+                      >
                         <MessageCircleCode size={16} />
                         Chats
-                      </button>
+                      </Link>
 
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link
+                        to="/app-dashboard/canvas"
+                        className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
+                      >
                         <Brush size={16} />
                         Canvas
-                      </button>
+                      </Link>
 
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link
+                        to="/app-dashboard/timeline"
+                        className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
+                      >
                         <Hourglass size={16} />
                         Timeline
-                      </button>
+                      </Link>
 
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
                         <Headset size={16} />
                         Call
-                      </button>
+                      </Link>
 
-                      <button className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
+                      <Link className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1">
                         <Video size={16} />
                         Video call
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
