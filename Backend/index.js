@@ -7,13 +7,12 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors')
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose");
-const { Socket } = require("dgram");
 
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
+    methods:["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
 });
@@ -41,17 +40,9 @@ app.use(
 );
 
 io.on("connection", (socket) => {
-  console.log("User connected");
-  console.log(socket.id)
-
+  console.log("New client connected");
   socket.on("disconnect", () => {
-    console.log("User disconnected");
-  });
-
-  // Add your custom event handlers here
-  socket.on("message", (data) => {
-    console.log("Message received:", data);
-    io.emit("message", data); // Broadcast to all clients
+    console.log("Client disconnected");
   });
 });
 
@@ -61,3 +52,5 @@ app.use("/" , require("./routes/projectRoutes"))
 server.listen(PORT, () => {
   console.log(`server is runnung On ${PORT}`);
 });
+
+module.exports = io

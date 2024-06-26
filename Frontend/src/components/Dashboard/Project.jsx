@@ -43,7 +43,7 @@ const Project = () => {
           <h2 className="text-lg font-bold font-headerFonts sm:text-xl p-2 text-gray-600 border-b-2 border-gray-800 flex justify-between items-center">
             <p className="flex items-center gap-2">
               <FolderOpenDot />
-              Projects Dashboard
+              Admin Dashboard
             </p>
             <button
               className="group relative inline-block text-sm font-medium text-white focus:outline-none"

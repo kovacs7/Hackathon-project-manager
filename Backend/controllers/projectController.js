@@ -70,4 +70,15 @@ const getUserProjects = async (req, res) => {
   }
 };
 
-module.exports = { createProjects, getUserProjects };
+const getProjectById = async (req, res) => {
+  try {
+    const projectId = req.params.projectId
+    const projectData = await projectModel.findById(projectId);
+    res.json(projectData)
+  } catch (error) {
+    console.log("Error :: getProjectById", error);
+    res.json({error : "Error occured while fetching data by projectId on server."})
+  }
+}
+
+module.exports = { createProjects, getUserProjects, getProjectById };

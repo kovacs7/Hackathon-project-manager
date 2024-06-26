@@ -93,7 +93,7 @@ const Article = ({ project }) => {
 
                     <div className="mt-4 flex flex-wrap gap-1">
                       <Link
-                        to="/app-dashboard/task"
+                        to={`/app-dashboard/${project._id}/tasks`}
                         className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
                       >
                         <LayoutList size={16} />
@@ -101,7 +101,7 @@ const Article = ({ project }) => {
                       </Link>
 
                       <Link
-                        to="/app-dashboard/chat"
+                        to={`/app-dashboard/${project._id}/chats`}
                         className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
                       >
                         <MessageCircleCode size={16} />
@@ -109,7 +109,7 @@ const Article = ({ project }) => {
                       </Link>
 
                       <Link
-                        to="/app-dashboard/canvas"
+                        to={`/app-dashboard/${project._id}/canvas`}
                         className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
                       >
                         <Brush size={16} />
@@ -117,7 +117,7 @@ const Article = ({ project }) => {
                       </Link>
 
                       <Link
-                        to="/app-dashboard/timeline"
+                        to={`/app-dashboard/${project._id}/timeline`}
                         className="whitespace-nowrap rounded-md bg-purple-100 px-2.5 py-0.5 text-sm text-purple-600 flex justify-center items-center gap-1"
                       >
                         <Hourglass size={16} />

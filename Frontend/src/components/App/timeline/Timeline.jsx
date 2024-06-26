@@ -1,9 +1,30 @@
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const Timeline = () => {
-  return (
-    <div>Timeline</div>
-  )
-}
+  const [projectInfo, setProjectInfo] = useState({});
+  const { projectId } = useParams();
 
-export default Timeline
+  const fetchDataByProjectId = async () => {
+    try {
+      const res = await axios.get(`/app-dashboard/${projectId}/tasks`);
+      setProjectInfo(res.data);
+      if (res.data.error) {
+        toast.error(res.data.error);
+      }
+    } catch (error) {
+      toast.error("Error occured while fetching data by projectId on client.");
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataByProjectId();
+  }, []);
+
+  return <div>Timeline For {projectInfo.title}</div>;
+};
+
+export default Timeline;

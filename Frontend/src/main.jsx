@@ -16,25 +16,10 @@ import Task from "./components/App/Tasks/Task.jsx";
 import Chat from "./components/App/chat/Chat.jsx";
 import Timeline from "./components/App/timeline/Timeline.jsx";
 import Canvas from "./components/App/canvas/Canvas.jsx";
-import io from "socket.io-client";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 
-const socket = io("http://localhost:3000", {
-  withCredentials: true,
-});
-
-socket.on("connect", () => {
-  console.log("Connected to the server");
-
-  // Example of emitting an event
-  socket.emit("message", { text: "Hello, server!" });
-});
-
-socket.on("message", (data) => {
-  console.log("Message from server:", data);
-});
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,10 +28,13 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
       <Route path="/app-dashboard" element={<AppDashboard />}>
-        <Route path="/app-dashboard/task" element={<Task />} />
-        <Route path="/app-dashboard/chat" element={<Chat />} />
-        <Route path="/app-dashboard/canvas" element={<Canvas />} />
-        <Route path="/app-dashboard/timeline" element={<Timeline />} />
+        <Route path="/app-dashboard/:projectId/tasks" element={<Task />} />
+        <Route path="/app-dashboard/:projectId/chats" element={<Chat />} />
+        <Route path="/app-dashboard/:projectId/canvas" element={<Canvas />} />
+        <Route
+          path="/app-dashboard/:projectId/timeline"
+          element={<Timeline />}
+        />
       </Route>
     </>
   )

@@ -9,8 +9,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo2 from "../../assets/Logo2.svg";
+import { useParams } from "react-router-dom";
 
 const AppMenu = () => {
+  const { projectId } = useParams();
   return (
     <>
       <div className="flex h-initial w-16 flex-col justify-between border-e bg-white">
@@ -39,7 +41,7 @@ const AppMenu = () => {
 
                 <li>
                   <Link
-                    to="/app-dashboard/task"
+                    to={`/app-dashboard/${projectId}/tasks`}
                     className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   >
                     <LayoutList size={24} />
@@ -52,7 +54,7 @@ const AppMenu = () => {
 
                 <li>
                   <Link
-                    to="/app-dashboard/chat"
+                    to={`/app-dashboard/${projectId}/chats`}
                     className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   >
                     <MessageCircleCode size={24} />
@@ -65,7 +67,7 @@ const AppMenu = () => {
 
                 <li>
                   <Link
-                    to="/app-dashboard/canvas"
+                    to={`/app-dashboard/${projectId}/canvas`}
                     className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   >
                     <Brush size={24} />
@@ -78,7 +80,7 @@ const AppMenu = () => {
 
                 <li>
                   <Link
-                    to="/app-dashboard/timeline"
+                    to={`/app-dashboard/${projectId}/timeline`}
                     className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   >
                     <Hourglass size={24} />
