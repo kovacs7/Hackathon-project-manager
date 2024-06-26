@@ -5,14 +5,17 @@ const {
   Login,
   AccountsInfo,
   searchUsers,
+  fetchUsernames,
 } = require("../controllers/authController");
 
-router.post("/signup" , SignUp)
+router.post("/signup", SignUp);
 
-router.post("/login", Login)
+router.post("/login", Login);
 
-router.get("/accountsinfo", AccountsInfo)
+router.get("/accountsinfo", AccountsInfo);
 
 router.get("/users/search", searchUsers);
 
-module.exports = router
+router.post("/fetch-usernames", fetchUsernames);
+
+module.exports = router;

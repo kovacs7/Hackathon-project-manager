@@ -7,12 +7,22 @@ import {
   Headset,
   HomeIcon,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo2 from "../../assets/Logo2.svg";
 import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useState } from "react";
 
 const AppMenu = () => {
+  const navigate = useNavigate()
   const { projectId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const removeToken = () => {
+    Cookies.remove("userToken");
+    navigate("/")
+  };
+
   return (
     <>
       <div className="flex h-initial w-16 flex-col justify-between border-e bg-white">
@@ -120,9 +130,9 @@ const AppMenu = () => {
         </div>
 
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-300 bg-white p-2">
-          <form action="#">
+          <>
             <button
-              type="submit"
+              onClick={() => setIsModalOpen(true)}
               className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
               <svg
@@ -144,9 +154,36 @@ const AppMenu = () => {
                 Logout
               </span>
             </button>
-          </form>
+          </>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-400 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+          <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-50 text-gray-700">
+            <p className="text-xl font-medium leading-tight tracking-wide text-center">
+              Do you want to Log Out?
+            </p>
+            <p className="flex-1 text-gray-600">
+              Please leave a reveiw for us. 🥹{" "}
+              <a
+                href="#"
+                rel="noopener noreferrer"
+                className="font-light text-sm text-indigo-600"
+              >
+                feedback form.
+              </a>
+            </p>
+            <div className="flex flex-col justify-center gap-3 mt-6 sm:flex-row">
+              <button onClick={() => setIsModalOpen(false)} className="px-6 py-2 rounded-lg bg-indigo-100">
+                Cancel
+              </button>
+              <button onClick={removeToken} className="px-6 py-2 rounded-lg shadow-sm bg-indigo-500 text-gray-50">
+                Agree
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

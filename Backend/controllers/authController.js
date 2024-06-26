@@ -7,6 +7,7 @@ const {
 } = require("../models/models.js");
 const jwt = require("jsonwebtoken");
 const { hashPassword, comparePassword } = require("../helper/auth");
+const mongoose = require("mongoose")
 
 const SignUp = async (req, res) => {
   try {
@@ -109,4 +110,33 @@ const searchUsers = async (req, res) => {
   }
 };
 
-module.exports = { SignUp, Login, AccountsInfo, searchUsers};
+const fetchUsernames = async (req, res) => {
+  try {
+    const { objectIds } = req.body;
+
+    if (!objectIds || !Array.isArray(objectIds)) {
+      return res
+        .status(400)
+        .json({ error: "Invalid input: objectIds must be an array" });
+    }
+
+    // Fetch usernames based on provided ObjectIds
+    const users = await userModel
+      .find({
+        _id: { $in: objectIds.map((id) => new mongoose.Types.ObjectId(id)) },
+      })
+      .select("username");
+
+    // Extract usernames
+    const usernames = users.map((user) => user.username);
+
+    res.json({ usernames });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching usernames" });
+  }
+};
+
+module.exports = { SignUp, Login, AccountsInfo, searchUsers, fetchUsernames};
