@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors')
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose");
+const {creatTask} = require('./handlers/taskHandler')
 
 const server = http.createServer(app)
 const io = new Server(server, {
@@ -40,9 +41,13 @@ app.use(
 );
 
 io.on("connection", (socket) => {
-  console.log("New client connected");
+  console.log("client connected");
+
+  //TASK OPERATIONS
+  socket.on('createTask', creatTask )
+
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    console.log("client disconnected");
   });
 });
 

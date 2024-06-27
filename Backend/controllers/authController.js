@@ -114,10 +114,20 @@ const fetchUsernames = async (req, res) => {
   try {
     const { objectIds } = req.body;
 
-    if (!objectIds || !Array.isArray(objectIds)) {
+    if (!objectIds || !Array.isArray(objectIds) || objectIds.length === 0) {
       return res
         .status(400)
-        .json({ error: "Invalid input: objectIds must be an array" });
+        .json({ error: "Invalid input: objectIds must be a non-empty array" });
+    }
+
+    // Ensure all objectIds are strings
+    const validObjectIds = objectIds.every(
+      (id) => typeof id === "string" && mongoose.Types.ObjectId.isValid(id)
+    );
+    if (!validObjectIds) {
+      return res
+        .status(400)
+        .json({ error: "Invalid input: All objectIds must be valid strings" });
     }
 
     // Fetch usernames based on provided ObjectIds
@@ -125,18 +135,22 @@ const fetchUsernames = async (req, res) => {
       .find({
         _id: { $in: objectIds.map((id) => new mongoose.Types.ObjectId(id)) },
       })
-      .select("username");
+      .select("_id username");
 
-    // Extract usernames
-    const usernames = users.map((user) => user.username);
-
-    res.json({ usernames });
+    res.json({ usernames: users });
   } catch (error) {
     console.error(error);
+
+    // Check for specific types of errors and respond accordingly
+    if (error.name === "CastError") {
+      return res.status(400).json({ error: "Invalid ObjectId format" });
+    }
+
     res
       .status(500)
       .json({ error: "An error occurred while fetching usernames" });
   }
 };
+
 
 module.exports = { SignUp, Login, AccountsInfo, searchUsers, fetchUsernames};
