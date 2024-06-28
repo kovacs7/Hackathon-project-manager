@@ -24,6 +24,7 @@ const Task = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [selectedUsernames, setSelectedUsernames] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const fetchDataByProjectId = async () => {
     try {
@@ -108,6 +109,19 @@ const Task = () => {
     fetchDataByProjectId();
   }, [projectId]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900); // Adjust the threshold as needed
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <h2 className="text-md font-bold font-headerFonts sm:text-xl p-2 text-gray-600 border-b-2 border-gray-300 flex justify-between items-center bg-white">
@@ -131,8 +145,14 @@ const Task = () => {
 
       {/* KanBan Application */}
 
-      <div className="">
-        <KanbanBoard projectId={projectId} />
+      <div>
+        {isMobile ? (
+          <p className="text-center p-4 text-xl font-medium">
+            Please use bigger screens for better experience.
+          </p>
+        ) : (
+          <KanbanBoard projectId={projectId} />
+        )}
       </div>
 
       {/* Form Modal */}
