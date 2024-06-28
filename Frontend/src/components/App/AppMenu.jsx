@@ -158,7 +158,7 @@ const AppMenu = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-400 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 bg-gray-400 bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10">
           <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md dark:bg-gray-50 text-gray-700">
             <p className="text-xl font-medium leading-tight tracking-wide text-center">
               Do you want to Log Out?

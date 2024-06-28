@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { SquarePlus, LayoutList, X } from "lucide-react";
 import Logo2 from "../../../assets/Logo2.svg";
-import TaskBadge from "./TaskBadge"
+import TaskBadge from "./TaskBadge";
+import KanbanBoard from "./KanbanBoard";
 
 const socket = io("http://localhost:3000", {
   withCredentials: true,
@@ -37,7 +38,7 @@ const Task = () => {
         toast.error(res.data.error);
       }
     } catch (error) {
-      toast.error("Error occured while fetching data by projectId on client.");
+      toast.error("Error occurred while fetching data by projectId on client.");
       console.log(error);
     }
   };
@@ -51,19 +52,19 @@ const Task = () => {
       dueDate,
       status,
       assignedTo: selectedUsernames.map((user) => user._id),
-      projectId,
+      projectId, // Include projectId in taskData
     };
 
     socket.emit("createTask", taskData, (response) => {
       if (response.status === "ok") {
         toast.success("Task created successfully!");
-        setTitle("")
-        setAssignedTo("")
-        setDescription("")
-        setDueDate("")
-        setStatus("planned")
-        setSelectedUsernames([])
-        setIsModalOpen(false)
+        setTitle("");
+        setAssignedTo("");
+        setDescription("");
+        setDueDate("");
+        setStatus("planned");
+        setSelectedUsernames([]);
+        setIsModalOpen(false);
       } else {
         toast.error("Error creating task");
       }
@@ -105,7 +106,7 @@ const Task = () => {
 
   useEffect(() => {
     fetchDataByProjectId();
-  }, []);
+  }, [projectId]);
 
   return (
     <>
@@ -129,7 +130,10 @@ const Task = () => {
       </h2>
 
       {/* KanBan Application */}
-      
+
+      <div className="">
+        <KanbanBoard projectId={projectId} />
+      </div>
 
       {/* Form Modal */}
 

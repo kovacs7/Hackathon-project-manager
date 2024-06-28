@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
@@ -41,7 +40,7 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <Toaster
       position="top-center"
       reverseOrder={false}
@@ -68,5 +67,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       }}
     />
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </>
 );

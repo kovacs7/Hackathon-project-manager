@@ -111,6 +111,7 @@ const searchUsers = async (req, res) => {
 };
 
 const fetchUsernames = async (req, res) => {
+  // for teammates
   try {
     const { objectIds } = req.body;
 
@@ -152,5 +153,18 @@ const fetchUsernames = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userModel.find({})
+    console.log(users);
+    res.status(200).json(users)
+  } catch (error) {
+    console.log(error)
+     res
+       .status(500)
+       .json({ error: "An error occurred while getAllUsers" });
+  }
+}
 
-module.exports = { SignUp, Login, AccountsInfo, searchUsers, fetchUsernames};
+
+module.exports = { SignUp, Login, AccountsInfo, searchUsers, fetchUsernames , getAllUsers};
