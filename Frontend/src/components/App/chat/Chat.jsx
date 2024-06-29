@@ -4,15 +4,22 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import ChatRoom from "./ChatRoom";
+import useAccountData from "../../../store/authStore";
 
 const Chat = () => {
   const [projectInfo, setProjectInfo] = useState({});
   const { projectId } = useParams();
+  const { data, getAccountData } = useAccountData();
+
+  useEffect(() => {
+    getAccountData();
+  }, [getAccountData]);
 
   const fetchDataByProjectId = async () => {
     try {
       const res = await axios.get(`/app-dashboard/${projectId}/tasks`);
       setProjectInfo(res.data);
+      
       if (res.data.error) {
         toast.error(res.data.error);
       }
@@ -34,8 +41,8 @@ const Chat = () => {
           Chats Room For {projectInfo.title}
         </p>
       </h2>
-      <div className="bg-emerald-300">
-        <ChatRoom/>
+      <div>
+        <ChatRoom projectId={projectId} userId={data._id} username={data.username}/>
       </div>
     </div>
   );

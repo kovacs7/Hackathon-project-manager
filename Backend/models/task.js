@@ -9,10 +9,10 @@ const taskSchema = new mongoose.Schema({
     enum: ["planned", "ongoing", "completed", "backlog"],
     required: true,
   },
-  assignedTo: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  assignedTo: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
+    ref: "project",
     required: true,
   },
 });

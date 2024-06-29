@@ -12,3 +12,6 @@
   height: var(--initial-vh);
 }
 
+.h-custom {
+  height: calc(var(--initial-vh) - 225px);
+}

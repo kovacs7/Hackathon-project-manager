@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const canvasSchema = new mongoose.Schema({
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
+    ref: "project",
     required: true,
   },
   canvasData: { type: String, required: true }, // Adjust based on your canvas data format
