@@ -6,7 +6,7 @@ const canvasSchema = new mongoose.Schema({
     ref: "project",
     required: true,
   },
-  canvasData: { type: String, required: true }, // Adjust based on your canvas data format
+  canvasData: { type: String, required: true }, 
   lastUpdated: { type: Date, default: Date.now },
 });
 

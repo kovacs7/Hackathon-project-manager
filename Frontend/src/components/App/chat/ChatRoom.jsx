@@ -15,7 +15,6 @@ const ChatRoom = ({ projectId, userId, username }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // Join the project room and fetch previous messages
     socket.emit("joinProject", projectId, userId, username);
 
     socket.on("previousMessages", (messages) => {
@@ -64,7 +63,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
       sender: userId,
       senderUsername: username,
       message: newMessage,
-      timestamp: new Date().toISOString(), // Add timestamp
+      timestamp: new Date().toISOString(),
     };
 
     socket.emit("sendMessage", messageData);
@@ -75,7 +74,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
     socket.emit("typing", projectId, userId, username);
     setTimeout(() => {
       socket.emit("stopTyping", projectId, userId);
-    }, 3000); // Stop typing after 3 seconds of inactivity
+    }, 3000); // timing of user inactivity
   };
 
   const formatTimestamp = (timestamp) => {

@@ -8,7 +8,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const { createTask } = require("./handlers/taskHandler");
-const Chat = require("./models/chat"); // Import chat model
+const Chat = require("./models/chat");
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
     socket.join(projectId);
     console.log(`Client joined project ${projectId}`);
 
-    // Track online users
+    // online users
     onlineUsers[socket.id] = { userId, username, projectId };
     updateOnlineUsers(projectId);
 
@@ -79,7 +79,7 @@ io.on("connection", (socket) => {
         sender,
         senderUsername,
         message,
-        timestamp: new Date(), // Ensure the timestamp is set
+        timestamp: new Date(), 
       });
       await chat.save();
       io.to(projectId).emit("message", chat);
@@ -99,8 +99,8 @@ io.on("connection", (socket) => {
 
   // Task operations
   socket.on("createTask", (taskData, callback) => {
-    const { projectId } = taskData; // Extract projectId from taskData
-    createTask(io, projectId, taskData, callback); // Pass io to createTask
+    const { projectId } = taskData; 
+    createTask(io, projectId, taskData, callback); 
   });
 
   socket.on("updateTask", (projectId, task) => {
