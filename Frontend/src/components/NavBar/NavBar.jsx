@@ -7,6 +7,10 @@ const NavBar = () => {
   useEffect(() => {
     getAccountData();
   }, [getAccountData]);
+  
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   return (
     <>
       <header className="px-4 pb-4 pt-6 text-gray-800" id="nav">
@@ -49,7 +53,8 @@ const NavBar = () => {
           <div className="flex items-center md:space-x-4">
             {data ? (
               <p className="text-gray-50 text-md md:block hidden font-headerFonts">
-                Hi, {data.name} ! <span className="text-2xl">👋</span>
+                Hi, {data.name ? capitalizeFirstLetter(data.name) : null} !{" "}
+                <span className="text-2xl">👋</span>
               </p>
             ) : (
               <>

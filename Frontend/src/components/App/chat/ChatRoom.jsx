@@ -1,7 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import PropTypes from "prop-types";
-import { SendHorizonal } from "lucide-react";
+import {
+  ArrowUpAZ,
+  Calendar,
+  Clock,
+  MessageSquareMore,
+  SendHorizonal,
+  UserPlus,
+  Users,
+} from "lucide-react";
 
 const socket = io("http://localhost:3000", {
   withCredentials: true,
@@ -48,7 +56,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
       socket.off("typing");
       socket.off("stopTyping");
     };
-  }, [projectId]);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -79,42 +87,87 @@ const ChatRoom = ({ projectId, userId, username }) => {
 
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
-    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    return {
+      dateFormat: date.toLocaleDateString(),
+      timeFormat: date.toLocaleTimeString(),
+    };
   };
+
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
 
   return (
     <div className="flex flex-wrap p-4 md:space-x-4 h-[90%]">
       {/* Online & typing users section */}
-      <div className="bg-indigo-100 rounded-md p-4 w-[18%] md:block hidden">
-        <div>
-          <h3 className="font-semibold text-sm">Online Users</h3>
-          <ul>
-            {onlineUsers.map((user, index) => (
-              <li key={index}>{user.username}</li>
-            ))}
-          </ul>
+      <div className="bg-white shadow-md rounded-md p-4 w-[18%] md:block hidden">
+        <div className="mb-4 border-b border-slate-300 pb-4 h-1/2">
+          <div className="font-semibold text-sm flex flex-row gap-1 items-center justify-center p-1 bg-emerald-100 border border-emerald-300 rounded-md text-emerald-800">
+            <Users size={16} />
+            <p>Online Users</p>
+          </div>
+          <div className="overflow-y-auto">
+            <ul>
+              {onlineUsers.map((user, index) => (
+                <li
+                  key={index}
+                  className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-blue-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
+                >
+                  <UserPlus size={16} />
+                  <p>{user.username}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div>
-          <h3 className="font-semibold text-sm">Typing Users</h3>
+          <h3 className="font-semibold text-sm flex flex-row gap-1 items-center justify-center p-1 bg-blue-100 border border-blue-300 rounded-md text-blue-700">
+            <ArrowUpAZ size={16} />
+            <p>Typing Users ...</p>
+          </h3>
           <ul>
             {Array.from(typingUsers.values()).map((username, index) => (
-              <li key={index}>{username}</li>
+              <li
+                key={index}
+                className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-purple-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
+              >
+                <MessageSquareMore size={16} />
+                <p>{username}</p>
+              </li>
             ))}
           </ul>
         </div>
       </div>
 
       {/* Message section */}
-      <div className="bg-yellow-100 rounded-md p-4 md:w-[79%] w-full flex flex-col gap-4">
-        <div className="overflow-y-auto h-custom">
-          <div className="messages">
+      <div className="bg-indigo-100 rounded-md p-4 md:w-[79%] w-full flex flex-col gap-4 max-h-custom shadow-md">
+        <div className="overflow-y-auto h-custom bg-white shadow-md rounded-md px-4">
+          <div className="messages pt-2">
             {messages.map((message, index) => (
-              <div key={index} className="mb-2">
-                <div className="text-sm text-gray-500">
-                  {formatTimestamp(message.timestamp)}
+              <div
+                key={index}
+                className="mb-2 odd:bg-indigo-100 even:bg-slate-100 py-1.5 px-2.5 rounded-md"
+              >
+                <div className="text-md mb-1">
+                  <strong className="text-gray-700">
+                    {capitalizeFirstLetter(message.senderUsername)}
+                  </strong>
+                  : {message.message}
                 </div>
-                <div>
-                  <strong>{message.senderUsername}</strong>: {message.message}
+
+                {/* timestamp */}
+
+                <div className="text-xs text-gray-700 flex flex-row gap-4 items-center">
+                  <div className="flex flex-row gap-1 items-center">
+                    <Calendar size={13} color="green" />
+                    <p>{formatTimestamp(message.timestamp).dateFormat}</p>
+                  </div>
+
+                  <div className="flex flex-row gap-1 items-center">
+                    <Clock size={13} color="green" />
+                    <p>{formatTimestamp(message.timestamp).timeFormat}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -122,12 +175,12 @@ const ChatRoom = ({ projectId, userId, username }) => {
           </div>
         </div>
         <form
-          className="flex flex-row bg-yellow-100 p-4 border-t border-gray-300"
+          className="flex flex-row bg-white rounded-md p-1.5 shadow-md"
           onSubmit={handleSendMessage}
         >
           <input
             type="text"
-            className="px-2.5 py-1.5 rounded-md w-full outline-none border border-black"
+            className="px-2.5 py-1.5 rounded-md w-full outline-none border border-indigo-300"
             value={newMessage}
             onChange={(e) => {
               setNewMessage(e.target.value);

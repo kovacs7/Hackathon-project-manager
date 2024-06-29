@@ -13,5 +13,40 @@
 }
 
 .h-custom {
-  height: calc(var(--initial-vh) - 225px);
+  height: calc(var(--initial-vh) - 195px);
 }
+
+.max-h-custom {
+  height: calc(var(--initial-vh) - 100px);
+}
+
+/* Customize the scrollbar for Webkit browsers */
+.messages::-webkit-scrollbar {
+  width: 12px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: hsl(237, 100%, 89%); 
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: hsl(237, 100%, 89%); 
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: hsl(237, 100%, 89%); 
+}
+
+/* Customize the scrollbar for Firefox */
+.messages {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(237, 100%, 89%) #f1f1f1;
+}
+
+.messages:hover {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(237, 100%, 89%) #f1f1f1;
+}
+
