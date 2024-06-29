@@ -181,7 +181,7 @@ const KanbanBoard = ({ projectId }) => {
                             className={`mb-1 p-4 bg-white rounded-lg shadow-md text-wrap`}
                           >
                             <div className="flex flex-wrap justify-between items-center relative">
-                              <h3 className="font-bold text-clip text-md">
+                              <h3 className="font-bold text-clip text-md break-words">
                                 {task.title}
                               </h3>
                               <button
@@ -215,7 +215,7 @@ const KanbanBoard = ({ projectId }) => {
                                 )}
                               </div>
                             </div>
-                            <p className="mb-4 text-clip text-sm">
+                            <p className="mb-4 text-clip text-sm break-words">
                               {task.description}
                             </p>
                             <div className="flex flex-wrap justify-between">

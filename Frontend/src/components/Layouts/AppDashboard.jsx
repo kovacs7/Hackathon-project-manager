@@ -13,7 +13,7 @@ const AppDashboard = () => {
     <>
       <div className="max-w-screen-2xl flex flex-row justify-between max-h-initial mx-auto rounded-sm bg-yellow-400">
         <AppMenu />
-        <div className="mx-auto w-full bg-gray-100">
+        <div className="mx-auto w-full bg-gray-100 h-initial">
           {data ? (
             <Outlet />
           ) : (
