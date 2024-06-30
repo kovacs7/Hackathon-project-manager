@@ -120,7 +120,7 @@ const KanbanBoard = ({ projectId }) => {
     <>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex space-x-4 p-4">
-          {["backlog", "planned", "ongoing", "completed"].map((status) => (
+          {["planned", "ongoing", "completed", "backlog"].map((status) => (
             <Droppable droppableId={status} key={status}>
               {(provided) => (
                 <div

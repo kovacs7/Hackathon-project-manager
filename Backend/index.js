@@ -176,6 +176,7 @@ io.on("connection", (socket) => {
 app.use("/", require("./routes/authRoutes"));
 app.use("/", require("./routes/projectRoutes"));
 app.use("/", require("./routes/taskRoutes"));
+app.use("/", require("./routes/timelineRoutes"));
 
 server.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
