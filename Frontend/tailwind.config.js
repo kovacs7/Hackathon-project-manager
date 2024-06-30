@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         headerFonts: ["Noto Sans", "sans-serif"],
       },
+      backgroundImage: {
+        "home": "url('/src/assets/HOME.webp')",
+      },
     },
   },
   plugins: [],

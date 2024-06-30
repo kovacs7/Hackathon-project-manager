@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import LOGIN from "../../assets/LOGIN.webp"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,8 +39,8 @@ const Login = () => {
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
           <img
-            alt=""
-            src="https://images.unsplash.com/photo-1599666432665-0150417654c5?q=80&w=2200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Login"
+            src={LOGIN}
             className="absolute inset-0 h-full w-full object-cover"
           />
         </aside>

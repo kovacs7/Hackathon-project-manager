@@ -1,19 +1,19 @@
 const Hero = () => {
   return (
     <>
-      <section className="relative bg-[url(https://mlh.io/assets/pages/guides/hacking-header-8d9ee01d33a4efa66523b2db6a45e96e.jpg)] bg-cover bg-center bg-no-repeat mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 sm:rounded-md">
+      <section className="relative bg-home bg-cover bg-center bg-no-repeat mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 sm:rounded-md ">
         <div className="absolute inset-0 sm:bg-transparent"></div>
 
-        <div className="relative backdrop-blur-md p-4 rounded-md w-[100%] sm:w-[50%]">
+        <div className="relative backdrop-blur-md p-4 rounded-md w-[100%] sm:w-[50%] bg-black bg-opacity-25">
           <div className="max-w-xl text-center sm:text-left">
             <h1 className="text-3xl text-gray-200 font-extrabold sm:text-5xl">
               Streamline your hackathon journey -
-              <strong className="block font-extrabold text-indigo-400">
+              <strong className="block font-extrabold text-indigo-300">
                 {" "}
                 Plan, collaborate, and innovate{" "}
               </strong>
               effortlessly with
-              <strong className="block font-extrabold text-indigo-400">
+              <strong className="block font-extrabold text-indigo-300">
                 {" "}
                 Aspire!{" "}
               </strong>

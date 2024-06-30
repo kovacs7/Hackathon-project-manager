@@ -84,9 +84,9 @@ const ReadOnly = ({ projectId }) => {
             <div className="col-span-12 sm:col-span-3">
               <div className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-indigo-500">
                 <h3 className="text-3xl font-bold mb-2 font-headerFonts text-gray-700">
-                  Timeline
+                  Project Timeline
                 </h3>
-                <span className="text-sm font-bold tracking-wider uppercase text-gray-600">
+                <span className="text-sm font-bold tracking-wider uppercase text-gray-600 font-headerFonts">
                   <blockquote>
                     &ldquo;Some of us learn from other people{"'"}s mistakes and
                     the rest of us have to be other people. &rdquo;
