@@ -38,7 +38,7 @@ const Chat = () => {
       <h2 className="text-md font-bold font-headerFonts sm:text-xl p-2 text-gray-600 border-b-2 border-gray-300 flex justify-between items-center bg-white">
         <p className="flex items-center gap-2">
           <MessageCircleCode />
-          Chats Room For {projectInfo.title}
+          Chat Room For {projectInfo.title}
         </p>
       </h2>
       <div>

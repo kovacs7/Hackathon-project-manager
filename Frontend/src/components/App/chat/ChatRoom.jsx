@@ -82,7 +82,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
     socket.emit("typing", projectId, userId, username);
     setTimeout(() => {
       socket.emit("stopTyping", projectId, userId);
-    }, 3000); // timing of user inactivity
+    }, 4000); // timing of user inactivity
   };
 
   const formatTimestamp = (timestamp) => {
@@ -112,7 +112,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
                 user.username ? (
                   <li
                     key={index}
-                    className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-blue-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
+                    className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-blue-50 even:bg-slate-50 border p-1 my-1 rounded-md text-gray-600 odd:border-blue-300 even:border-slate-300 odd:hover:bg-white even:hover:bg-white"
                   >
                     <UserPlus size={16} />
                     <p>{user.username}</p>
@@ -131,7 +131,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
             {Array.from(typingUsers.values()).map((username, index) => (
               <li
                 key={index}
-                className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-purple-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
+                className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-purple-50 even:bg-slate-50 p-1 my-1 rounded-md odd:text-purple-600 even:text-slate-600 border odd:border-purple-300 even:border-slate-300"
               >
                 <MessageSquareMore size={16} />
                 <p>{username}</p>
@@ -150,7 +150,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
                 key={index}
                 className="mb-2 odd:bg-indigo-100 even:bg-slate-100 py-1.5 px-2.5 rounded-md"
               >
-                <div className="text-md mb-1">
+                <div className="text-md mb-2">
                   <strong className="text-gray-700">
                     {capitalizeFirstLetter(message.senderUsername)}
                   </strong>
@@ -159,14 +159,14 @@ const ChatRoom = ({ projectId, userId, username }) => {
 
                 {/* timestamp */}
 
-                <div className="text-xs text-gray-700 flex flex-row gap-4 items-center">
+                <div className="text-xs text-purple-700 bg-purple-100 w-fit justify-center flex flex-row gap-2 items-center rounded-md p-0.5 border border-purple-300">
                   <div className="flex flex-row gap-1 items-center">
-                    <Calendar size={13} color="green" />
+                    <Calendar size={13} />
                     <p>{formatTimestamp(message.timestamp).dateFormat}</p>
                   </div>
 
                   <div className="flex flex-row gap-1 items-center">
-                    <Clock size={13} color="green" />
+                    <Clock size={13} />
                     <p>{formatTimestamp(message.timestamp).timeFormat}</p>
                   </div>
                 </div>

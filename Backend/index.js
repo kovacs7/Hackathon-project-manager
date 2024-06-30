@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const { createTask } = require("./handlers/taskHandler");
 const Chat = require("./models/chat");
+const canvasModel = require('./models/canvas')
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -71,9 +72,57 @@ io.on("connection", (socket) => {
     } catch (error) {
       console.error("Error fetching previous messages:", error);
     }
+
+    // fetching existing canvas data
+    try {
+      const canvas = await canvasModel.findOne({ projectId });
+      if (canvas) {
+        console.log(canvas)
+        socket.emit("loadCanvas", canvas.canvasData);
+      }
+    } catch (error) {
+      console.error("Error fetching canvas data:", error);
+    }
   });
 
-  // Chat operations
+  // Canvas Operations
+  
+  socket.on("drawing", async (data) => {
+    const { projectId, drawingData } = data;
+
+    socket.to(projectId).emit("drawing", drawingData);
+
+    // drawing data to database
+    try {
+      await canvasModel.findOneAndUpdate(
+        { projectId },
+        { canvasData: drawingData, lastUpdated: new Date() },
+        { upsert: true }
+      );
+    } catch (err) {
+      console.error("Error saving canvas data", err);
+    }
+  });
+
+  // clear canvas event
+  socket.on("clearCanvas", async (data) => {
+    const { projectId } = data;
+
+    socket.to(projectId).emit("clearCanvas");
+
+    try {
+      await canvasModel.findOneAndUpdate(
+        { projectId },
+        { canvasData: "", lastUpdated: new Date() },
+        { upsert: true }
+      );
+    } catch (err) {
+      console.error("Error clearing canvas data", err);
+    }
+  });
+
+  // Chat Operations
+
   socket.on("sendMessage", async (data) => {
     try {
       const { projectId, sender, senderUsername, message } = data;
@@ -82,7 +131,7 @@ io.on("connection", (socket) => {
         sender,
         senderUsername,
         message,
-        timestamp: new Date(), 
+        timestamp: new Date(),
       });
       await chat.save();
       io.to(projectId).emit("message", chat);
@@ -91,7 +140,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Typing notification
   socket.on("typing", (projectId, userId, username) => {
     socket.to(projectId).emit("typing", { userId, username });
   });
@@ -102,8 +150,8 @@ io.on("connection", (socket) => {
 
   // Task operations
   socket.on("createTask", (taskData, callback) => {
-    const { projectId } = taskData; 
-    createTask(io, projectId, taskData, callback); 
+    const { projectId } = taskData;
+    createTask(io, projectId, taskData, callback);
   });
 
   socket.on("updateTask", (projectId, task) => {
@@ -123,6 +171,7 @@ io.on("connection", (socket) => {
     console.log("client disconnected");
   });
 });
+
 
 app.use("/", require("./routes/authRoutes"));
 app.use("/", require("./routes/projectRoutes"));
