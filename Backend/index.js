@@ -47,7 +47,10 @@ const updateOnlineUsers = (projectId) => {
   const users = Object.values(onlineUsers).filter(
     (user) => user.projectId === projectId
   );
-  io.to(projectId).emit("onlineUsers", users);
+  io.to(projectId).emit(
+    "onlineUsers",
+    users.map((user) => ({ username: user.username }))
+  );
 };
 
 io.on("connection", (socket) => {

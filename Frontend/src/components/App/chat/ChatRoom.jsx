@@ -56,7 +56,7 @@ const ChatRoom = ({ projectId, userId, username }) => {
       socket.off("typing");
       socket.off("stopTyping");
     };
-  }, []);
+  }, [projectId, userId, username]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -97,7 +97,6 @@ const ChatRoom = ({ projectId, userId, username }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-
   return (
     <div className="flex flex-wrap p-4 md:space-x-4 h-[90%]">
       {/* Online & typing users section */}
@@ -109,15 +108,17 @@ const ChatRoom = ({ projectId, userId, username }) => {
           </div>
           <div className="overflow-y-auto">
             <ul>
-              {onlineUsers.map((user, index) => (
-                <li
-                  key={index}
-                  className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-blue-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
-                >
-                  <UserPlus size={16} />
-                  <p>{user.username}</p>
-                </li>
-              ))}
+              {onlineUsers.map((user, index) =>
+                user.username ? (
+                  <li
+                    key={index}
+                    className="font-medium text-sm flex flex-row gap-1 items-center justify-center w-full odd:bg-blue-100 even:bg-slate-100 p-1 my-1 rounded-md text-gray-600"
+                  >
+                    <UserPlus size={16} />
+                    <p>{user.username}</p>
+                  </li>
+                ) : null
+              )}
             </ul>
           </div>
         </div>
