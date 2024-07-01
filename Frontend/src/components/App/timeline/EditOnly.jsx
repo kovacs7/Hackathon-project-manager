@@ -13,6 +13,8 @@ const EditOnly = ({ projectId }) => {
   const [data, setData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [milestoneId , setMilestoneId] = useState("")
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,7 +135,10 @@ const EditOnly = ({ projectId }) => {
 
                       <button
                         className="whitespace-nowrap rounded-md bg-red-100 px-1.5 py-1.5 text-sm text-orange-700 flex flex-wrap gap-1 items-center"
-                        onClick={() => handleDelete(milestone._id)}
+                        onClick={() => {
+                          setMilestoneId(milestone._id);
+                          setIsDeleteModalOpen(true);
+                        }}
                       >
                         <Trash2 size={13} />
                         <p className="sm:block hidden pr-1 text-xs">Delete</p>
@@ -255,6 +260,40 @@ const EditOnly = ({ projectId }) => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* delete Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-gray-900 backdrop-blur-md bg-opacity-25 flex justify-center items-center z-50">
+          <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md bg-white text-gray-700 text-center">
+            <p className="text-xl font-medium leading-tight tracking-wide text-center">
+              Are you certain you want to delete this Project?
+            </p>
+            <p className="flex-1 text-gray-600">
+              This Project will be{" "}
+              <span className="text-orange-600">permanently erased</span> from
+              the server.
+            </p>
+            <div className="flex flex-col justify-center gap-3 mt-6 sm:flex-row">
+              <button
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="px-6 py-2 rounded-lg bg-indigo-100"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(milestoneId)
+                  setIsDeleteModalOpen(false)
+                }}
+                className="px-4 py-2 rounded-lg shadow-sm bg-indigo-500 text-white flex flex-wrap gap-3 items-center"
+              >
+                <Trash2 size={16} />
+                <p>Delete</p>
+              </button>
+            </div>
           </div>
         </div>
       )}

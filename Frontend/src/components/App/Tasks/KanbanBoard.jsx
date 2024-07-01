@@ -142,28 +142,20 @@ const KanbanBoard = ({ projectId }) => {
                         : ""
                     }`}
                   >
-                    <p>
+                    <span>
                       {status === "backlog" ? (
-                        <>
-                          <FileClock size={22} />
-                        </>
+                        <FileClock size={22} />
                       ) : status === "completed" ? (
-                        <>
-                          <SquareCheckBig size={22} />
-                        </>
+                        <SquareCheckBig size={22} />
                       ) : status === "ongoing" ? (
-                        <>
-                          <FolderGit2 size={22} />
-                        </>
+                        <FolderGit2 size={22} />
                       ) : status === "planned" ? (
-                        <>
-                          <NotepadText size={22} />
-                        </>
+                        <NotepadText size={22} />
                       ) : (
                         ""
                       )}
-                    </p>
-                    <p>{status}</p>
+                    </span>
+                    <span>{status}</span>
                   </h2>
                   {tasks
                     .filter((task) => task.status === status)
@@ -220,20 +212,20 @@ const KanbanBoard = ({ projectId }) => {
                             </p>
                             <div className="flex flex-wrap justify-between">
                               <div className="flex flex-wrap gap-1 text-sm">
-                                <p className="font-semibold text-sm">
+                                <span className="font-semibold text-sm">
                                   Due date:
-                                </p>{" "}
-                                <p className="inline-flex items-center justify-center rounded-lg bg-emerald-100 px-1.5 py-0.5 text-emerald-700 gap-1">
+                                </span>{" "}
+                                <span className="inline-flex items-center justify-center rounded-lg bg-emerald-100 px-1.5 py-0.5 text-emerald-700 gap-1">
                                   <CalendarClock size={16} />
-                                  <p className="text-xs">
+                                  <div className="text-xs">
                                     {task.dueDate.slice(0, 10)}
-                                  </p>
-                                </p>
+                                  </div>
+                                </span>
                               </div>
                               <div className="flex flex-wrap gap-1 text-sm mt-2 items-center">
-                                <p className="font-semibold text-sm">
+                                <span className="font-semibold text-sm">
                                   Assigned to:
-                                </p>
+                                </span>
                                 <div className="flex flex-wrap gap-1">
                                   {task.assignedTo.map((userId) => (
                                     <span
