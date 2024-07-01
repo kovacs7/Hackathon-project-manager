@@ -269,10 +269,10 @@ const EditOnly = ({ projectId }) => {
         <div className="fixed inset-0 bg-gray-900 backdrop-blur-md bg-opacity-25 flex justify-center items-center z-50">
           <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md bg-white text-gray-700 text-center">
             <p className="text-xl font-medium leading-tight tracking-wide text-center">
-              Are you certain you want to delete this Project?
+              Are you certain you want to delete this Milestone?
             </p>
             <p className="flex-1 text-gray-600">
-              This Project will be{" "}
+              This Milestone will be{" "}
               <span className="text-orange-600">permanently erased</span> from
               the server.
             </p>
