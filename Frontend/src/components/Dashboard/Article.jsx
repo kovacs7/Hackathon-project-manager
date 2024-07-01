@@ -40,6 +40,15 @@ const Article = ({ project, data }) => {
     }
   };
 
+  const formatDate = (timestamp) => {
+    const dateObj = new Date(timestamp);
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const formattedDate = dateObj
+      .toLocaleDateString("en-US", options)
+      .toUpperCase();
+    return formattedDate;
+  };
+
   return (
     <>
       <div className="group relative inline-block text-sm font-medium text-indigo-300 focus:outline-none active:text-indigo-700 bg-indigo-400 rounded-md">
@@ -74,7 +83,7 @@ const Article = ({ project, data }) => {
                           <div className="font-bold flex flex-row gap-1">
                             <p>Date:</p>
                             <p className="font-medium">
-                              {project.info.date.slice(0, 10)}
+                              {formatDate(project.info.date)}
                             </p>
                           </div>
                           <div className="relative ml-3 bg-blue-100 text-blue-700 px-2.5 py-1.5 rounded-md">
@@ -176,7 +185,7 @@ const Article = ({ project, data }) => {
       {/* modal section */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-900 backdrop-blur-md bg-opacity-25 flex justify-center items-center z-50">
-          <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md bg-white text-gray-700">
+          <div className="flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md bg-white text-gray-700 text-center">
             <p className="text-xl font-medium leading-tight tracking-wide text-center">
               Are you certain you want to delete this Project?
             </p>

@@ -85,17 +85,32 @@ const ChatRoom = ({ projectId, userId, username }) => {
     }, 4000); // timing of user inactivity
   };
 
-  const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    return {
-      dateFormat: date.toLocaleDateString(),
-      timeFormat: date.toLocaleTimeString(),
-    };
-  };
-
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  function convertTo12HourFormat(timestamp) {
+    const date = new Date(timestamp);
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+    const strTime = hours + ":" + minutesStr + " " + ampm;
+    return strTime;
+  }
+
+  const formatDate = (timestamp) => {
+    const dateObj = new Date(timestamp);
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const formattedDate = dateObj
+      .toLocaleDateString("en-US", options)
+      .toUpperCase();
+    return formattedDate;
+  };
 
   return (
     <div className="flex flex-wrap p-4 md:space-x-4 h-[90%]">
@@ -162,12 +177,12 @@ const ChatRoom = ({ projectId, userId, username }) => {
                 <div className="text-xs text-purple-700 bg-purple-100 w-fit justify-center flex flex-row gap-2 items-center rounded-md p-0.5 border border-purple-300">
                   <div className="flex flex-row gap-1 items-center">
                     <Calendar size={13} />
-                    <p>{formatTimestamp(message.timestamp).dateFormat}</p>
+                    <p>{formatDate(message.timestamp)}</p>
                   </div>
 
                   <div className="flex flex-row gap-1 items-center">
                     <Clock size={13} />
-                    <p>{formatTimestamp(message.timestamp).timeFormat}</p>
+                    <p>{convertTo12HourFormat(message.timestamp)}</p>
                   </div>
                 </div>
               </div>

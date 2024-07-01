@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { Milestone } from "lucide-react"; // Assuming Milestone is an icon component from a library
+import { Milestone } from "lucide-react";
 
 const ReadOnly = ({ projectId }) => {
   const [data, setData] = useState([]);
@@ -69,8 +69,8 @@ const ReadOnly = ({ projectId }) => {
       if (closestMilestoneElement) {
         closestMilestoneElement.scrollIntoView({
           behavior: "smooth",
-          block: "center", // Scroll to the middle of the viewport
-          inline: "center", // Center horizontally
+          block: "center", 
+          inline: "center", 
         });
       }
     }
