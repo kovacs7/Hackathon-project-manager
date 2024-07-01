@@ -33,7 +33,7 @@ const FormModal = ({ modalClose }) => {
 
   const fetchUserSuggestions = async (query) => {
     try {
-      const response = await axios.get("http://localhost:3000/users/search", {
+      const response = await axios.get("/users/search", {
         params: { query },
       });
       setUserSuggestions(response.data);
@@ -74,7 +74,7 @@ const FormModal = ({ modalClose }) => {
     const teamMembersUsernames = teamMembers.map((member) => member.username);
 
     try {
-      const response = await axios.post("http://localhost:3000/projects", {
+      const response = await axios.post("/projects", {
         title,
         description,
         createdBy: data._id,
@@ -83,7 +83,7 @@ const FormModal = ({ modalClose }) => {
       });
 
       if (response.status === 201) {
-        toast.success("Project successfully created.\nPlease refresh the page to see the changes.");
+        toast.success("Project successfully created.");
         modalClose();
       }
     } catch (error) {
@@ -91,6 +91,7 @@ const FormModal = ({ modalClose }) => {
       console.error(error);
     }
   };
+
 
   return (
     <>

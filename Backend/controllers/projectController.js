@@ -80,4 +80,29 @@ const getProjectById = async (req, res) => {
   }
 };
 
-module.exports = { createProjects, getUserProjects, getProjectById };
+const deleteProject = async (req, res) => {
+  const { projectId } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const project = await projectModel.findById(projectId);
+
+    if (!project) {
+      return res.status(404).json({ error : "Project not found" });
+    }
+
+    if (project.createdBy.toString() !== userId) {
+      return res
+        .status(403)
+        .json({ error : "You are not authorized to delete this project" });
+    }
+
+    await projectModel.findByIdAndDelete(projectId);
+    res.status(200).json({ message: "Project deleted successfully" });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error : "Server error" });
+  }
+};
+
+module.exports = { createProjects, getUserProjects, getProjectById, deleteProject };

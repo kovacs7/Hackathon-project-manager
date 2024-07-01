@@ -60,7 +60,7 @@ const Project = () => {
           </h2>
           <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {projectInfo.map((project) => (
-              <Article key={project._id} project={project} />
+              <Article key={project._id} project={project} data={data} />
             ))}
           </div>
         </div>
