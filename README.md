@@ -10,7 +10,7 @@ Welcome to the Hackathon Project Manager! Organize tasks, assign responsibilitie
 
 | <img width="1439" alt="Screenshot 2024-07-02 at 1 47 52 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/91901c12-1b2b-4211-8cd5-ffbdba07ed38">| <img width="1440" alt="Screenshot 2024-07-02 at 4 29 48 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/0e369dba-de40-4cd2-9770-edf84098ba96">|
 | ------ | ------ |
-|<img width="1440" alt="Screenshot 2024-07-02 at 4 30 20 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/0b8f35b2-891b-4837-99fa-bade66e24759">| <img width="1440" alt="Screenshot 2024-07-02 at 4 29 57 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/95fa5e86-43ca-4db9-b2ea-a8f2fcdd2e1d">|
+|<img width="1440" alt="Screenshot 2024-07-02 at 4 29 57 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/95fa5e86-43ca-4db9-b2ea-a8f2fcdd2e1d">|<img width="1440" alt="Screenshot 2024-07-02 at 4 30 20 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/0b8f35b2-891b-4837-99fa-bade66e24759">|
 
 | <img width="1440" alt="Screenshot 2024-07-02 at 4 30 35 PM-min" src="https://github.com/kovacs7/Hackathon-project-manager/assets/129580965/4baf9159-52db-46bb-8d42-9b6b03b85d80">|
 |------|
